@@ -4,7 +4,7 @@
 const int WINDOW_HEIGHT = 600;
 const int WINDOW_WIDTH = 800;
 
-int main()
+int main(int argc __attribute__((unused)), char* args[] __attribute__((unused)))
 {
 	SDL_Window* window = nullptr;
 	SDL_Surface* surface = nullptr;
