@@ -28,7 +28,6 @@ ifeq ($(Werror), 1)
 endif
 
 Extension=
-LinkerFlags= -lSDL2 -lSDL2main
 CXX= g++ $(CPP11Support) $(CompilerFlags) $(CompilerWarningFlags)
 Executable=ogl101
 CPP_FILES := $(wildcard src/*.cpp)
@@ -39,9 +38,9 @@ CPP11Support=-std=c++11
 ifeq ($(OS), Windows_NT)
 	#Windows Support
     Extension=.exe
-    LinkerFlags:= -lopengl32 -lmingw32 -lglew32 $(LinkerFlags)
+    LinkerFlags= -lmingw32 -lSDL2main -lSDL2 -lopengl32  -lglew32
 else
-    LinkerFlags:= -lGL -lGLEW $(LinkerFlags)	
+    LinkerFlags= -lSDL2 -lSDL2main -lGL -lGLEW	
 endif
 
 all: $(Executable)
