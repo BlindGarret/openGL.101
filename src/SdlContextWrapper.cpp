@@ -19,7 +19,8 @@ SdlContextWrapper::SdlContextWrapper(OpenGlTestCase* testCase)
 
 		SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, _testCase->OpenGlMajorVersion());
 		SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, _testCase->OpenGlMinorVersion());
-		SDL_GL_SetAttribute( SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
+		SDL_GL_SetAttribute( SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 1);
 
 		_window = SDL_CreateWindow( "SDL Tutorial",
 									SDL_WINDOWPOS_UNDEFINED,

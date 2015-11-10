@@ -19,12 +19,9 @@ public:
 	virtual bool IsQuit();
 
 private:
-	//methods
-	bool TryCompileShader(const char* shader, GLenum shaderType, GLuint& outshaderId);
-	bool TryLinkGlslProgram(GLuint vertexShaderId, GLuint fragmentShaderId, GLuint& outProgramId);
-
 	GLuint _programId;
 	GLint _attributeCoord2d;
+	GLuint _vboTriangle;
 };
 
 #endif
