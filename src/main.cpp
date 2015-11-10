@@ -1,12 +1,14 @@
 #include <cstdio>
 #include "SdlContextWrapper.h"
 #include "BlackWindowCase.h"
+#include "SimpleTriangleCase.h"
 
 int main(int argc __attribute__((unused)), char* args[] __attribute__((unused)))
 {
 
 	/* Cases */
-	auto testCase = BlackWindowCase();
+	//auto testCase = BlackWindowCase();
+	auto testCase = SimpleTriangleCase();
 
 	SdlContextWrapper wrapper(&testCase);
 	if(!wrapper.Init())
