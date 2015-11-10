@@ -1,7 +1,7 @@
 #include "SdlContextWrapper.h"
 #include <SDL2/SDL.h>
-#include <gl/glew.h>
-#include <gl/glu.h>
+#include <GL/glew.h>
+#include <GL/glu.h>
 #include <cstdio>
 
 SdlContextWrapper::SdlContextWrapper(OpenGlTestCase* testCase)
