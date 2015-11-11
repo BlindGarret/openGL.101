@@ -1,6 +1,7 @@
 #include "SimpleTriangleCase.h"
 #include "ShaderHelper.h"
 #include <cstdio>
+#include <string>
 
 void SimpleTriangleCase::Render()
 {
@@ -34,7 +35,7 @@ bool SimpleTriangleCase::Init()
 	auto shaderHelper = ShaderHelper();
 
 	//vertex shader
-	const char* vertexShader;
+	std::string vertexShader = "";
 
 	if(!shaderHelper.TryReadShaderFile("shaders/SimpleVertexShader.vs", vertexShader))
 	{
@@ -50,7 +51,7 @@ bool SimpleTriangleCase::Init()
 	}
 
 	//fragment shader
-	const char* fragmentShader;
+	std::string fragmentShader = "";
 	if(!shaderHelper.TryReadShaderFile("shaders/SimpleFragmentShader.fs", fragmentShader))
 	{
 		printf("Could not open fragment file!\n");

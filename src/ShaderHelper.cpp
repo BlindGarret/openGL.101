@@ -4,28 +4,28 @@
 #include <vector>
 #include <iostream>
 
-bool ShaderHelper::TryReadShaderFile(const char* path, const char*& output)
+bool ShaderHelper::TryReadShaderFile(std::string path, std::string& output)
 {
 	//Load shader from file SimpleVertexShader
 	std::ifstream input(path);
-	if(!input.good())
+	if(!input)
 	{	
 		output = "";
 		return false;
 	}
 
 	output = std::string(std::istreambuf_iterator<char>(input),
-								 std::istreambuf_iterator<char>())
-								.c_str();
+								 std::istreambuf_iterator<char>());
+
 	return true;
 }
 
-bool ShaderHelper::TryCompileVertexShader(const char* shader, GLuint& outshaderId)
+bool ShaderHelper::TryCompileVertexShader(std::string shader, GLuint& outshaderId)
 {
 	return TryCompileShader(shader, GL_VERTEX_SHADER, outshaderId);
 }
 
-bool ShaderHelper::TryCompileFragmentShader(const char* shader, GLuint& outshaderId)
+bool ShaderHelper::TryCompileFragmentShader(std::string shader, GLuint& outshaderId)
 {
 	return TryCompileShader(shader, GL_FRAGMENT_SHADER, outshaderId);
 }
@@ -56,10 +56,11 @@ bool ShaderHelper::TryLinkGlslProgram(GLuint vertexShaderId, GLuint fragmentShad
 	return true;
 }
 
-bool ShaderHelper::TryCompileShader(const char* shader, GLenum shaderType, GLuint& outshaderId)
+bool ShaderHelper::TryCompileShader(std::string shader, GLenum shaderType, GLuint& outshaderId)
 {
 	outshaderId = glCreateShader(shaderType);
-	glShaderSource(outshaderId, 1, &shader, nullptr);
+	auto shaderCString = shader.c_str();
+	glShaderSource(outshaderId, 1, &shaderCString, nullptr);
 	glCompileShader(outshaderId);
 	GLint compiled = GL_FALSE;
 	glGetShaderiv(outshaderId, GL_COMPILE_STATUS, &compiled);

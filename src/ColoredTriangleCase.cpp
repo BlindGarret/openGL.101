@@ -1,6 +1,7 @@
 #include "ColoredTriangleCase.h"
 #include "ShaderHelper.h"
 #include <cstdio>
+#include <string>
 
 void ColoredTriangleCase::Render()
 {
@@ -43,7 +44,7 @@ bool ColoredTriangleCase::Init()
 	auto shaderHelper = ShaderHelper();
 
 	//vertex shader
-	const char* vertexShader;
+	std::string vertexShader = "";
 
 	if(!shaderHelper.TryReadShaderFile("shaders/PreColoredVertexShader.vs", vertexShader))
 	{
@@ -59,7 +60,7 @@ bool ColoredTriangleCase::Init()
 	}
 
 	//fragment shader
-	const char* fragmentShader;
+	std::string fragmentShader = "";
 	if(!shaderHelper.TryReadShaderFile("shaders/PreColoredFragmentShader.fs", fragmentShader))
 	{
 		printf("Could not open fragment file!\n");
