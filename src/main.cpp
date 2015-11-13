@@ -3,6 +3,7 @@
 #include "BlackWindowCase.h"
 #include "SimpleTriangleCase.h"
 #include "ColoredTriangleCase.h"
+#include "Tutorial4.h"
 
 int main(int argc __attribute__((unused)), char* args[] __attribute__((unused)))
 {
@@ -10,7 +11,8 @@ int main(int argc __attribute__((unused)), char* args[] __attribute__((unused)))
 	/* Cases */
 	//auto testCase = BlackWindowCase();
 	//auto testCase = SimpleTriangleCase();
-	auto testCase = ColoredTriangleCase();
+	//auto testCase = ColoredTriangleCase();
+	auto testCase = Tutorial4();
 
 	SdlContextWrapper wrapper(&testCase);
 	if(!wrapper.Init())

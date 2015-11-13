@@ -53,6 +53,25 @@ bool ShaderHelper::TryLinkGlslProgram(GLuint vertexShaderId, GLuint fragmentShad
 		std::cout << output;
 		return false;
 	}
+
+	GLint validated = GL_FALSE;
+	glValidateProgram(outProgramId);
+	glGetProgramiv(outProgramId, GL_VALIDATE_STATUS, &validated);
+	if(! validated)
+	{
+		GLint logSize = 0;
+		glGetProgramiv(outProgramId, GL_INFO_LOG_LENGTH, &logSize);
+		std::vector<GLchar> errorLog(static_cast<GLuint>(logSize));
+		glGetProgramInfoLog(outProgramId, logSize, &logSize, &errorLog[0]);
+		std::string output;
+		for(auto c : errorLog)
+		{
+			output += c;
+		}
+		printf("Unabled to link GLSL program!\n");
+		std::cout << output;
+		return false;
+	}
 	return true;
 }
 
