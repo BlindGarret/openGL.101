@@ -10,8 +10,6 @@ public:
 	virtual bool Init();
 	virtual void Close();
 	virtual void HandleInput(SDL_Event e);
-	virtual int OpenGlMajorVersion();	
-	virtual int OpenGlMinorVersion();
 	virtual int WindowHeight();
 	virtual int WindowWidth();
 	virtual bool IsQuit();

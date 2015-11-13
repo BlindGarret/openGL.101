@@ -139,16 +139,6 @@ void ColoredTriangleCase::HandleInput(SDL_Event)
 	//do nothing
 }
 
-int ColoredTriangleCase::OpenGlMajorVersion()
-{
-	return 2;
-}
-	
-int ColoredTriangleCase::OpenGlMinorVersion()
-{
-	return 1;
-}
-
 int ColoredTriangleCase::WindowHeight()
 {
 	return 600;

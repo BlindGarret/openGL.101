@@ -6,17 +6,10 @@
 
 void Tutorial4::Render()
 {
-	glClear( GL_COLOR_BUFFER_BIT );
-
-	glUseProgram(_programId);
+	glClear(GL_COLOR_BUFFER_BIT);
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboTriangle);
-	glVertexAttribPointer(0,
-						 3,
-						 GL_FLOAT,
-						 GL_FALSE,
-						 0,
-						 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glDisableVertexAttribArray(0);
 }
@@ -29,9 +22,17 @@ bool Tutorial4::Init()
 		return false;
 	}
 
-	glClearColor( 0.0f, 0.0f, 1.0f, 1.0f );
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+
+	GLfloat vertices[] = {
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f
+	};
+
+	glGenBuffers(1, &_vboTriangle);
+	glBindBuffer(GL_ARRAY_BUFFER, _vboTriangle);
+	glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(sizeof(vertices)), vertices, GL_STATIC_DRAW);
 
 	auto shaderHelper = ShaderHelper();
 
@@ -72,18 +73,7 @@ bool Tutorial4::Init()
 		return false;
 	}
 
-	//vertex VBO
-	GLfloat triangleVertices[] = {
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-	};
-	glGenBuffers(1, &_vboTriangle);
-	glBindBuffer(GL_ARRAY_BUFFER, _vboTriangle);
-	glBufferData(GL_ARRAY_BUFFER,
-					static_cast<GLsizeiptr>(sizeof(triangleVertices)),
-					triangleVertices,
-					GL_STATIC_DRAW);
+	glUseProgram(_programId);
 
 	return true;
 }
@@ -91,22 +81,11 @@ bool Tutorial4::Init()
 void Tutorial4::Close()
 {
 	glDeleteProgram(_programId);
-	glDeleteBuffers(1, &_vboTriangle);
 }
 
 void Tutorial4::HandleInput(SDL_Event)
 {
 	//do nothing
-}
-
-int Tutorial4::OpenGlMajorVersion()
-{
-	return 4;
-}
-	
-int Tutorial4::OpenGlMinorVersion()
-{
-	return 0;
 }
 
 int Tutorial4::WindowHeight()

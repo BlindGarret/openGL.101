@@ -25,16 +25,6 @@ void BlackWindowCase::HandleInput(SDL_Event)
 	//do nothing
 }
 
-int BlackWindowCase::OpenGlMajorVersion()
-{
-	return 3;
-}
-	
-int BlackWindowCase::OpenGlMinorVersion()
-{
-	return 1;
-}
-
 int BlackWindowCase::WindowHeight()
 {
 	return 600;

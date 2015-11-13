@@ -11,15 +11,14 @@ SdlContextWrapper::SdlContextWrapper(OpenGlTestCase* testCase)
 
 	bool SdlContextWrapper::Init()
 	{
+
 		if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 		{
 			printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError()); 
 			return false;
 		}
 
-		SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, _testCase->OpenGlMajorVersion());
-		SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, _testCase->OpenGlMinorVersion());
-		SDL_GL_SetAttribute( SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute( SDL_GL_ACCELERATED_VISUAL, 1);
 		SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 1);
 
 		_window = SDL_CreateWindow( "SDL Tutorial",
@@ -30,12 +29,13 @@ SdlContextWrapper::SdlContextWrapper(OpenGlTestCase* testCase)
 									SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
 		if( _window == nullptr )
 		{ 
-		 	printf( "Window could not be created! SDL_Error: %s\n",
+		 	printf( "Window could not be createdated! SDL_Error: %s\n",
 		 			 SDL_GetError() ); 
 		 	return false;
 		}
 
 		_context = SDL_GL_CreateContext(_window);
+		SDL_GL_MakeCurrent(_window, _context);
 
 		if(_context == NULL)
 		{
@@ -51,6 +51,8 @@ SdlContextWrapper::SdlContextWrapper(OpenGlTestCase* testCase)
 			printf( "Error initializing GLEW! %s\n", glewGetErrorString( glewError ) );
 			return false;
 		}
+
+   		printf("GL version: %s\n", glGetString(GL_VERSION));
 
 		//use Vsync
 		if(SDL_GL_SetSwapInterval(1) < 0)

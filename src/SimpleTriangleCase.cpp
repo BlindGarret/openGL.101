@@ -106,16 +106,6 @@ void SimpleTriangleCase::HandleInput(SDL_Event)
 	//do nothing
 }
 
-int SimpleTriangleCase::OpenGlMajorVersion()
-{
-	return 2;
-}
-	
-int SimpleTriangleCase::OpenGlMinorVersion()
-{
-	return 1;
-}
-
 int SimpleTriangleCase::WindowHeight()
 {
 	return 600;
